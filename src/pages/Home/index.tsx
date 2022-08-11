@@ -7,17 +7,18 @@ export default function Home() {
     const {file, setFile} = useContext(DataContext);
 
     return(
-        <div>
-            <div>
+        <div className={styles.container}>
+            <div className={styles.header}>
                 <h1>
                 Lista de Participantes
                 </h1>
             </div>
-            <div>
+            <div className={styles.inputArea}>
                 <h3>
                     Selecione um arquivo para importar
                 </h3>
-                <input type="file" name="" id=""
+                <label htmlFor="file">Selecione um Arquivo</label>
+                <input type="file" name="file" id="file"
                     onChange={(e) => {
                         const files = e.target.files;
                         if (files) {
@@ -31,26 +32,26 @@ export default function Home() {
                         }
                 }}/>
             </div>
-            <table>
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Primeiro Ingresso</th>
-                    <th>Última Saída</th>
-                    <th>Duração da Reunião</th>
-                </tr>
-            </thead>
-            <tbody>
-                {file &&
-                file.map((parsedData: { Nome: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; primeiroIngresso: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; ultimaSaida: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; duracaoDaReuniao: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; }, index: any) => (
-                    <tr key={index}>
-                        <td>{parsedData.Nome}</td>
-                        <td>{parsedData.primeiroIngresso}</td>
-                        <td>{parsedData.ultimaSaida}</td>
-                        <td>{parsedData.duracaoDaReuniao}</td>
+            <table cellPadding='0' cellSpacing='0' className={styles.tableContainer}>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Primeiro Ingresso</th>
+                        <th>Última Saída</th>
+                        <th>Duração da Reunião</th>
                     </tr>
-                ))}
-            </tbody>
+                </thead>
+                <tbody>
+                    {file &&
+                    file.map((parsedData: { Nome: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; primeiroIngresso: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; ultimaSaida: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; duracaoDaReuniao: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; }, index: any) => (
+                        <tr key={index}>
+                            <td>{parsedData.Nome}</td>
+                            <td>{parsedData.primeiroIngresso}</td>
+                            <td>{parsedData.ultimaSaida}</td>
+                            <td>{parsedData.duracaoDaReuniao}</td>
+                        </tr>
+                    ))}
+                </tbody>
             </table>
         </div>
     );

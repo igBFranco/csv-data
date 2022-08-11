@@ -1,1 +1,85 @@
+@import 'styles/variables';
 
+
+body {
+    background-color: $primary;
+    color: $lightPrimary;
+    font-family: 'Lato', sans-serif;
+
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+   
+    .header {
+        padding: 30px;
+        h1 {
+            font-size: 36px;
+            color: $lightSecondary;
+            font-weight: 900;
+        }
+    }
+
+    .inputArea {
+        margin: 30px;
+        padding: 20px;
+        height: 150px;
+        border-radius: 30px;
+        background-color: $darkSecondary;
+        label {
+            height: 50px;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: $lightSecondary;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        label:hover {
+            height: 50px;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: $hoverSecondary;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        input {
+            display: none;
+        }
+    }
+
+    .tableContainer {
+        margin: 30px;
+        background-color: $darkHover;
+        border-radius: 30px;
+        padding: 10px;
+        thead {
+            font-size: 20px;
+            background-color: $darkSecondary;
+            color: $lightSecondary;
+        }
+        tbody {
+            padding: 10px;
+            text-align: center;
+            tr {
+                background-color: $darkSecondary;
+                td {
+                    padding: 10px;
+                    
+                }
+            }
+            tr:hover{
+                background-color: $primary;
+                border-radius: 10px;
+            }
+            tr:nth-child(even) {
+                background-color: $darkHover;
+            }
+            tr:nth-child(even):hover {
+                background-color: $primary;
+            }
+        }
+    }
+}
