@@ -1,10 +1,12 @@
 import Papa from 'papaparse';
+import { useState } from 'react';
 import { JSXElementConstructor, ReactElement, ReactFragment, ReactPortal, useContext } from 'react';
 import { DataContext } from '../../common/context/DataContext';
 import styles from './Home.module.scss';
 
 export default function Home() {
     const {file, setFile} = useContext(DataContext);
+    const [fileName, setFileName] = useState('');
 
     return(
         <div className={styles.container}>
@@ -22,6 +24,7 @@ export default function Home() {
                     onChange={(e) => {
                         const files = e.target.files;
                         if (files) {
+                            setFileName(files[0].name);
                             Papa.parse(files[0], {
                             header: true,
                             complete: function(results) {
@@ -31,6 +34,9 @@ export default function Home() {
                             )
                         }
                 }}/>
+                <span>
+                    {fileName}
+                </span>
             </div>
             <table cellPadding='0' cellSpacing='0' className={styles.tableContainer}>
                 <thead>
@@ -42,7 +48,7 @@ export default function Home() {
                     </tr>
                 </thead>
                 <tbody>
-                    {file &&
+                    {file ?
                     file.map((parsedData: { Nome: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; primeiroIngresso: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; ultimaSaida: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; duracaoDaReuniao: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; }, index: any) => (
                         <tr key={index}>
                             <td>{parsedData.Nome}</td>
@@ -50,7 +56,11 @@ export default function Home() {
                             <td>{parsedData.ultimaSaida}</td>
                             <td>{parsedData.duracaoDaReuniao}</td>
                         </tr>
-                    ))}
+                    )) :
+                        <tr>
+                            <td colSpan={4}></td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
